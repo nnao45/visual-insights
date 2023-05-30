@@ -1,0 +1,83 @@
+{
+  "name": "visual-insights",
+  "version": "0.12.3",
+  "author": "Observed Observer",
+  "keywords": [
+    "insights",
+    "visualization"
+  ],
+  "main": "./build/cjs/index.js",
+  "module": "./build/esm/index.js",
+  "types": "./build/esm/index.d.ts",
+  "dependencies": {
+    "@kanaries/adapters": "^1.0.5",
+    "axios": "^0.27.2",
+    "detect-browser": "^5.3.0",
+    "localforage": "^1.10.0",
+    "tslib": "^2.4.0"
+  },
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "tmp0": "jest src/cube/__test__/storage.test.ts",
+    "tmp": "jest src/insights/InsightFlow/__test__/btc.test.ts",
+    "doc": "docsify serve ./docs",
+    "build": "npm run buildesm && npm run buildcjs",
+    "build-types": "npm run buildesm && npm run buildcjs",
+    "buildcjs": "tsc -p ./config/tsconfig.cjs.json",
+    "buildesm": "tsc -p ./config/tsconfig.esm.json",
+    "test": "npm run buildback && mocha --no-timeouts",
+    "jest-all": "jest --env=node",
+    "cpt-jest": "jest src/computation/",
+    "cube-test": "jest src/cube/",
+    "core-test": "jest src/insights/",
+    "performance-test0": "jest src/InsightFlow/__test__/performance.test.ts --max-old-space-size=8192",
+    "lite-per": "jest src/InsightFlow/__test__/liteperfor.test.ts",
+    "performance-test": "node --max-old-space-size=32192 ./node_modules/.bin/jest src/InsightFlow/__test__/performance.test.ts",
+    "t-test": "jest src/insightFlow/__test__/btc.test.ts",
+    "coverage": "istanbul cover _mocha --report lcovonly -- --no-timeouts -R spec && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
+    "rollup": "rollup --config ./config/rollup.esm.config.js && rollup --config ./config/rollup.cjs.config.js"
+  },
+  "prettier": {
+    "tabWidth": 4,
+    "printWidth": 120
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@rollup/plugin-json": "^4.1.0",
+    "@types/jest": "^28.1.6",
+    "@types/node": "^18.6.1",
+    "@types/webpack-env": "^1.17.0",
+    "coveralls": "^3.0.9",
+    "esbuild": "^0.14.49",
+    "istanbul": "^0.4.5",
+    "jest": "^28.1.3",
+    "mocha": "^6.2.0",
+    "mocha-lcov-reporter": "^1.3.0",
+    "rollup": "^2.77.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-dts": "^4.2.2",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-typescript2": "^0.32.1",
+    "rollup-plugin-uglify": "^6.0.4",
+    "ts-jest": "^29.0.1",
+    "ts-jest-resolver": "^2.0.0",
+    "tslint": "^6.1.2",
+    "typescript": "^4.7.4"
+  }
+}
